@@ -20,7 +20,7 @@ app.add_middleware(
 )
 
 @app.get("/")
-async def root(group_id: int = 0, start: int = 0, end: int = 0):
+async def group(group_id: int = 0, start: int = 0, end: int = 0):
     global curs
     curs.execute(f''' SELECT * FROM `groups` 
         WHERE date_start >= {start} AND
@@ -40,4 +40,10 @@ async def root(group_id: int = 0, start: int = 0, end: int = 0):
         })
 
     return {'groups': current_groups, 'start': start, 'end': end}
+
+@app.get("/groups")
+async def groups():
+    global curs
+    groups = curs.execute('SELECT * FROM `groups`').fetchall()
+    return groups
 
