@@ -8,8 +8,7 @@ curs = conn.cursor()
 
 app = FastAPI()
 origins = [    
-    "http://localhost:3000",
-    'http://188.68.223.139/'
+    "*"
 ]
 
 app.add_middleware(
